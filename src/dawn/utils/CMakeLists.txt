@@ -97,4 +97,8 @@ if(DAWN_SUPPORTS_GLFW_FOR_WINDOWING)
     if (DAWN_ENABLE_VULKAN)
         target_sources(dawn_utils PRIVATE "VulkanBinding.cpp")
     endif()
+
+    if (DAWN_ENABLE_OPENVR)
+        target_sources(dawn_utils PRIVATE "OpenVRBinding.cpp")
+    endif()
 endif()

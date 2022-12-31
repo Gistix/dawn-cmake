@@ -66,7 +66,11 @@ namespace vulkan {
 BackendConnection* Connect(InstanceBase* instance);
 }
 #endif  // defined(DAWN_ENABLE_BACKEND_VULKAN)
-
+#if defined(DAWN_ENABLE_BACKEND_OPENVR)
+namespace openvr {
+BackendConnection* Connect(InstanceBase* instance);
+}
+#endif  // defined(DAWN_ENABLE_BACKEND_VULKAN)
 namespace {
 
 BackendsBitset GetEnabledBackends() {
@@ -82,6 +86,9 @@ BackendsBitset GetEnabledBackends() {
 #endif  // defined(DAWN_ENABLE_BACKEND_METAL)
 #if defined(DAWN_ENABLE_BACKEND_VULKAN)
     enabledBackends.set(wgpu::BackendType::Vulkan);
+#endif  // defined(DAWN_ENABLE_BACKEND_VULKAN)
+#if defined(DAWN_ENABLE_BACKEND_OPENVR)
+    enabledBackends.set(wgpu::BackendType::OpenVR);
 #endif  // defined(DAWN_ENABLE_BACKEND_VULKAN)
 #if defined(DAWN_ENABLE_BACKEND_DESKTOP_GL)
     enabledBackends.set(wgpu::BackendType::OpenGL);

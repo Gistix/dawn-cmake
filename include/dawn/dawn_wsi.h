@@ -79,7 +79,7 @@ typedef struct {
 } DawnWSIContextGL;
 #endif
 
-#ifdef DAWN_ENABLE_BACKEND_VULKAN
+#ifdef DAWN_ENABLE_BACKEND_VULKAN || DAWN_ENABLE_BACKEND_OPENVR
 typedef struct {
 } DawnWSIContextVulkan;
 #endif

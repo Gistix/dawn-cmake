@@ -33,6 +33,9 @@ BackendBinding* CreateOpenGLBinding(GLFWwindow* window, WGPUDevice device);
 #if defined(DAWN_ENABLE_BACKEND_VULKAN)
 BackendBinding* CreateVulkanBinding(GLFWwindow* window, WGPUDevice device);
 #endif
+#if defined(DAWN_ENABLE_BACKEND_VULKAN)
+BackendBinding* CreateOpenVRBinding(GLFWwindow* window, WGPUDevice device);
+#endif
 
 BackendBinding::BackendBinding(GLFWwindow* window, WGPUDevice device)
     : mWindow(window), mDevice(device) {}
@@ -68,7 +71,12 @@ BackendBinding* CreateBinding(wgpu::BackendType type, GLFWwindow* window, WGPUDe
         case wgpu::BackendType::Vulkan:
             return CreateVulkanBinding(window, device);
 #endif
-
+            
+#if defined(DAWN_ENABLE_BACKEND_OPENVR)
+        case wgpu::BackendType::OpenVR:
+            return CreateOpenVRBinding(window, device);
+#endif
+            
         default:
             return nullptr;
     }
